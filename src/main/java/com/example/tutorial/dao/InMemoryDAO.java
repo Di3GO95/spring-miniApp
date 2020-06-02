@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("fakeDAO")
-public class FakePersonDataAccess implements PersonDAO {
+@Repository("InMemoryDAO")
+public class InMemoryDAO implements PersonDAO {
 
     private static List<Person> DB = new ArrayList<>();
 
@@ -47,8 +47,8 @@ public class FakePersonDataAccess implements PersonDAO {
     }
 
     @Override
-    public Person deletePerson(Person person) {
-        Optional<Person> personFound = getByID(person.getId());
+    public Person deletePerson(UUID id) {
+        Optional<Person> personFound = getByID(id);
         if (personFound.isPresent()){
             Person personGet = personFound.get();
             DB.remove(personGet);

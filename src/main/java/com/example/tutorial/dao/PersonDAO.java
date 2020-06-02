@@ -21,5 +21,5 @@ public interface PersonDAO {
 
     Person updatePerson(Person person);
 
-    Person deletePerson(Person person);
+    Person deletePerson(UUID id);
 }

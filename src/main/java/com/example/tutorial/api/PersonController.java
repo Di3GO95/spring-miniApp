@@ -36,14 +36,16 @@ public class PersonController {
         return personService.insertPerson(person);
     }
 
-    @PutMapping
-    public Person update(@NonNull @RequestBody Person person){
-        System.out.println(person.getId());
+    @PutMapping(path = "{id}")
+    public Person update(
+            @PathVariable("id") UUID id,
+            @NonNull @RequestBody Person person){
+        person.setId(id);
         return personService.update(person);
     }
 
-    @DeleteMapping
-    public Person delete(@NonNull @RequestBody Person person){
-        return personService.delete(person);
+    @DeleteMapping(path = "{id}")
+    public Person delete(@PathVariable("id") UUID id){
+        return personService.delete(id);
     }
 }
