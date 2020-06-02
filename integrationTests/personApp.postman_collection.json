@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "519f46f8-8f80-4da8-9886-d0e756e7bd96",
+		"name": "personApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all people",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d83e6bd0-4858-4310-b182-ba07b6dd669a",
+						"exec": [
+							"pm.test(\"Created, Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/person",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create person",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b69b894c-3dfe-4f9b-8f32-f276cbbc8e5f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Lara Croft\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/person",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create & delete person",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b69b894c-3dfe-4f9b-8f32-f276cbbc8e5f",
+						"exec": [
+							"pm.test(\"Created, Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.sendRequest({\r",
+							"    url: pm.variables.get(\"url\") + \"/person/\" + jsonData.id,\r",
+							"    method: 'DELETE'\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Lara Croft\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/person",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Person",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Alfonso Valera\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/person/c157a878-d4b8-422a-8fdb-4d502f941154",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"person",
+						"c157a878-d4b8-422a-8fdb-4d502f941154"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete person",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/person/daf4c001-8a0c-445b-8e8e-1eca94192010",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"person",
+						"daf4c001-8a0c-445b-8e8e-1eca94192010"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7625a7f2-b1c8-417a-8f8a-e3af2150b0e1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "604075c9-c4ae-40c0-b041-805e8ac4dad6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c3df3942-fedc-4247-bfbc-dca19569993e",
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
